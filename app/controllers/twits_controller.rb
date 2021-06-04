@@ -1,11 +1,16 @@
 class TwitsController < ApplicationController
   before_action :set_twit, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, except: [:index, :show]
+  
   # GET /twits or /twits.json
   def index
     @twits = Twit.all.order("created_at DESC")
     @twit = Twit.new
+    @users = User.all
+    @users.delete(current_user)
+
   end
+  
 
   # GET /twits/1 or /twits/1.json
   def show
@@ -13,7 +18,7 @@ class TwitsController < ApplicationController
 
   # GET /twits/new
   def new
-    @twit = Twit.new
+    @twit = current_user.twits.build
   end
 
   # GET /twits/1/edit
@@ -22,7 +27,7 @@ class TwitsController < ApplicationController
 
   # POST /twits or /twits.json
   def create
-    @twit = Twit.new(twit_params)
+    @twit = current_user.twits.build(twit_params)
 
     respond_to do |format|
       if @twit.save
@@ -65,6 +70,6 @@ class TwitsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def twit_params
-      params.require(:twit).permit(:twit)
+      params.require(:twit).permit(:twit, :avatar)
     end
 end

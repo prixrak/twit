@@ -1,57 +1,45 @@
-<div class="column">
-	<nav class="panel">
-    <p class="panel-heading">Who to Follow</p>
-    
-    <div class="panel-block">
-      <article class="media">
-        <div class="media-left">
-          <figure class="image is-32x32">
-            <img src="https://bulma.io/images/placeholders/64x64.png">
-          </figure>
-        </div>
-        <div class="media-content">
-          <div class="content">
-            <p>
-              <strong>Arman Petrosian</strong>
-              <small>@armanpetrosian</small>
-            </p>
+<% if user_signed_in? %>
+  <div class="column">
+    <nav class="panel">
+      <p class="panel-heading">Who to Follow</p>
+      <% @users.each do | user | %>
+        <% if user.present?  %>
+          <div class="panel-block">
+            <article class="media">
+              <div class="media-left">
+                <figure class="is-32x32 img-circular-32">
+                  <% if user.avatar.attached? %>
+                    <%= image_tag user.avatar, class: 'img-circular-32' %>
+                  <% else %>
+                    <%= gravatar_image_tag(user.email, size: 32, alt: user.name, class: 'img-circular-32') %>
+                  <% end %>   `      
+                </figure>
+              </div>
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    <strong><%= user.name %></strong></strong>
+                    <small><%= user.username %></small>
+                  </p>
+                </div>
+              </div>
+              <% if user_signed_in? %>
+                <div class="media-right is-inline">
+                  <div class="content">
+                    <nav class="level is-inline">
+                      <div class="level-right">
+                        <div class="level-item">
+                          <a class="button is-info is-small is-focused is-rounded">Follow</a>
+                        </div>
+                      </div>
+                    </nav>
+                  </div>
+                </div>
+              <% end %>       
+            </article>
           </div>
-        </div>
-      </article>
-    </div>
-    <div class="panel-block">
-      <article class="media">
-        <div class="media-left">
-          <figure class="image is-32x32">
-            <img src="https://bulma.io/images/placeholders/64x64.png">
-          </figure>
-        </div>
-        <div class="media-content">
-          <div class="content">
-            <p>
-              <strong>Arman Petrosian</strong>
-              <small>@armanpetrosian</small>
-            </p>
-          </div>
-        </div>
-      </article>
-    </div>
-    <div class="panel-block">
-      <article class="media">
-        <div class="media-left">
-          <figure class="image is-32x32">
-            <img src="https://bulma.io/images/placeholders/64x64.png">
-          </figure>
-        </div>
-        <div class="media-content">
-          <div class="content">
-            <p>
-              <strong>Arman Petrosian</strong>
-              <small>@armanpetrosian</small>
-            </p>
-          </div>
-        </div>
-      </article>
-    </div>
-	</nav>
-</div>
+        <% end %>
+      <% end %>       
+    </nav>
+  </div>
+<% end %>
