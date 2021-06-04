@@ -7,7 +7,7 @@ class TwitsController < ApplicationController
     @twits = Twit.all.order("created_at DESC")
     @twit = Twit.new
     @users = User.all
-    @users.delete(current_user)
+    # @users = User.all.where("id != ?", current_user.id)
 
   end
   

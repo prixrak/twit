@@ -58,11 +58,11 @@
 										<div class="level-item">
 										<% if current_user.following?(twit.user) %>
 											<%= link_to friendships_path(user_id: twit.user_id), method: :unfollow do %>
-												<a class="button is-info is-small is-focused is-rounded">Unfollow</a>
+												<span class="button is-info is-small is-focused is-rounded">Unfollow</span>
 											<% end %>
 										<% else %>
 											<%= link_to friendships_path(user_id: twit.user_id), method: :follow do %>
-												<a class="button is-info is-small is-focused is-rounded">Follow</a>
+												<span class="button is-info is-small is-focused is-rounded">Follow</span>
 											<% end %>
 										<% end %>
 										</div>

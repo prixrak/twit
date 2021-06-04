@@ -2,7 +2,7 @@
   <div class="column">
     <nav class="panel">
       <p class="panel-heading">Who to Follow</p>
-      <% @users.each do | user | %>
+      <% @users.all.where("id != ?", current_user.id).each do | user | %>
         <% if user.present?  %>
           <div class="panel-block">
             <article class="media">
@@ -29,7 +29,15 @@
                     <nav class="level is-inline">
                       <div class="level-right">
                         <div class="level-item">
-                          <a class="button is-info is-small is-focused is-rounded">Follow</a>
+                          <% if current_user.following?(user) %>
+                            <%= link_to friendships_path(user_id: user.id), method: :unfollow do %>
+                              <span class="button is-info is-small is-focused is-rounded">Unfollow</span>
+                            <% end %>
+                          <% else %>
+                            <%= link_to friendships_path(user_id: user.id), method: :follow do %>
+                              <span class="button is-info is-small is-focused is-rounded">Follow</span>
+                            <% end %>
+                          <% end %>
                         </div>
                       </div>
                     </nav>
