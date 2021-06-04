@@ -1,24 +1,16 @@
-# README
+INCLUDED FEATURES
+getting started(adding/editing/deleting posts, commenting, hiding posts) 5pts
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+authentification(users have their own posts, so do comments) 2pts
 
-Things you may want to cover:
+authorization(admin feature included, email: admin@admin.com, password: 123456 ) 4pts
 
-* Ruby version
+pagination 2pts
 
-* System dependencies
+search (by post's title) 2pts
 
-* Configuration
+image upload(S3 upload included) 4pts
 
-* Database creation
+Heroku deployment(https://elton-blog.herokuapp.com/) 3pts
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+TOTAL: 22pts
