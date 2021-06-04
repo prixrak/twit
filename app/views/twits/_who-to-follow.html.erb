@@ -2,7 +2,7 @@
   <div class="column">
     <nav class="panel">
       <p class="panel-heading">Who to Follow</p>
-      <% @users.all.where("id != ?", current_user.id).each do | user | %>
+      <% @users.all.where("id != ?", current_user.id).first(5).each do | user | %>
         <% if user.present?  %>
           <div class="panel-block">
             <article class="media">

@@ -18,12 +18,15 @@ class User < ApplicationRecord
   def follow(user)
     active_friendships.create(followed_id: user.id)
   end
+
   def unfollow(user)
     active_friendships.find_by(followed_id: user.id).destroy
   end
+
   def following?(user)
     following.include?(user)
   end
+  
   def index
     @users = User.all
   end
